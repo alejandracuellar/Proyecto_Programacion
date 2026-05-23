@@ -46,7 +46,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>edu.uptc.Application</mainClass>
+                            <mainClass>edu.uptc.vista.Application</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

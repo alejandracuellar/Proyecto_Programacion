@@ -1,4 +1,4 @@
-package edu.uptc;
+package edu.uptc.dominio;
 
 import java.time.LocalDate;
 

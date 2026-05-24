@@ -9,4 +9,6 @@ public class Contratante {
     private String codigoEntidad;
 
 
+
+
 }

@@ -1,6 +1,7 @@
 package edu.uptc.dominio;
 
 import java.time.LocalDate;
+import edu.uptc.enums.EstadoContrato;
 
 public class Contrato {
     private String numeroContrato;
@@ -9,9 +10,9 @@ public class Contrato {
     private Contratista contratista;
     private double valorContrato;
     private LocalDate plazoEjecucion;
-    private String estado;
+    private EstadoContrato estado;
 
-    public Contrato(String numeroContrato, LocalDate fechaCreacion, Contratante contratante, Contratista contratista, double valorContrato, LocalDate plazoEjecucion, String estado) {
+    public Contrato(String numeroContrato, LocalDate fechaCreacion, Contratante contratante, Contratista contratista, double valorContrato, LocalDate plazoEjecucion, EstadoContrato estado) {
         this.numeroContrato = numeroContrato;
         this.fechaCreacion = fechaCreacion;
         this.contratante = contratante;
@@ -73,11 +74,11 @@ public class Contrato {
         this.plazoEjecucion = plazoEjecucion;
     }
 
-    public String getEstado() {
+    public EstadoContrato getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(EstadoContrato estado) {
         this.estado = estado;
     }
 }

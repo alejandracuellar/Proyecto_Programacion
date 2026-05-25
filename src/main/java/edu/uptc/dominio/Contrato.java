@@ -13,7 +13,8 @@ public class Contrato {
     private LocalDate plazoEjecucion;
     private EstadoContrato estado;
 
-    public Contrato(String numeroContrato, String objetoContrato, LocalDate fechaCreacion, Contratante contratante, Contratista contratista, double valorContrato, LocalDate plazoEjecucion, EstadoContrato estado) {
+    public Contrato(String numeroContrato, String objetoContrato, LocalDate fechaCreacion, Contratante contratante,
+                    Contratista contratista, double valorContrato, LocalDate plazoEjecucion, EstadoContrato estado) {
         this.numeroContrato = numeroContrato;
         this.objetoContrato = objetoContrato;
         this.fechaCreacion = fechaCreacion;

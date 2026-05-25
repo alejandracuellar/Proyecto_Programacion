@@ -5,6 +5,7 @@ import edu.uptc.enums.EstadoContrato;
 
 public class Contrato {
     private String numeroContrato;
+    private String objetoContrato;
     private LocalDate fechaCreacion;
     private Contratante contratante;
     private Contratista contratista;
@@ -12,8 +13,9 @@ public class Contrato {
     private LocalDate plazoEjecucion;
     private EstadoContrato estado;
 
-    public Contrato(String numeroContrato, LocalDate fechaCreacion, Contratante contratante, Contratista contratista, double valorContrato, LocalDate plazoEjecucion, EstadoContrato estado) {
+    public Contrato(String numeroContrato, String objetoContrato, LocalDate fechaCreacion, Contratante contratante, Contratista contratista, double valorContrato, LocalDate plazoEjecucion, EstadoContrato estado) {
         this.numeroContrato = numeroContrato;
+        this.objetoContrato = objetoContrato;
         this.fechaCreacion = fechaCreacion;
         this.contratante = contratante;
         this.contratista = contratista;
@@ -32,6 +34,14 @@ public class Contrato {
 
     public void setNumeroContrato(String numeroContrato) {
         this.numeroContrato = numeroContrato;
+    }
+
+    public String getObjetoContrato() {
+        return objetoContrato;
+    }
+
+    public void setObjetoContrato(String objetoContrato) {
+        this.objetoContrato = objetoContrato;
     }
 
     public LocalDate getFechaCreacion() {

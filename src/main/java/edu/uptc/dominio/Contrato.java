@@ -3,18 +3,55 @@ package edu.uptc.dominio;
 import java.time.LocalDate;
 import edu.uptc.enums.EstadoContrato;
 
-public class Contrato {
+/**
+ * Clase abstracta que representa un contrato público en el sistema.
+ * Define los atributos comunes a todos los tipos de contrato y
+ * declara el método abstracto {@link #validarContrato()} que debe
+ * implementar cada subclase con sus propias reglas de negocio.
+ *
+ * @author Alejandra Cuellar, Laura Gonzalez, Elkin Pineda
+ * @version 1.0
+ */
+public abstract class Contrato {
+
+
+    /** Número único identificador del contrato. */
     private String numeroContrato;
+
+    /** Descripción del objeto o finalidad del contrato. */
     private String objetoContrato;
+
+    /** Fecha en que se creó el contrato en el sistema. */
     private LocalDate fechaCreacion;
+
+    /** Contratante responsable que creó el contrato. */
     private Contratante contratante;
+
+    /** Contratista que ejecutará el contrato (puede ser null inicialmente). */
     private Contratista contratista;
+
+    /** Valor monetario total del contrato. */
     private double valorContrato;
+
+    /** Fecha límite para la ejecución del contrato. */
     private LocalDate plazoEjecucion;
+
+    /** Estado actual del contrato en su ciclo de vida. */
     private EstadoContrato estado;
 
+    /**
+     * Constructor completo de Contrato.
+     *
+     * @param numeroContrato Número único del contrato.
+     * @param objetoContrato Objeto o finalidad del contrato.
+     * @param fechaCreacion  Fecha de creación.
+     * @param contratante    Contratante responsable.
+     * @param contratista    Contratista ejecutor (puede ser null).
+     * @param valorContrato  Valor total del contrato.
+     * @param plazoEjecucion Fecha límite de ejecución.
+     */
     public Contrato(String numeroContrato, String objetoContrato, LocalDate fechaCreacion, Contratante contratante,
-                    Contratista contratista, double valorContrato, LocalDate plazoEjecucion, EstadoContrato estado) {
+                    Contratista contratista, double valorContrato, LocalDate plazoEjecucion) {
         this.numeroContrato = numeroContrato;
         this.objetoContrato = objetoContrato;
         this.fechaCreacion = fechaCreacion;
@@ -22,74 +59,115 @@ public class Contrato {
         this.contratista = contratista;
         this.valorContrato = valorContrato;
         this.plazoEjecucion = plazoEjecucion;
-        this.estado = estado;
+        this.estado = EstadoContrato.PUBLICADO;
     }
 
-    public Contrato(){
-
-    }
-
+    /** @return Número del contrato. */
     public String getNumeroContrato() {
         return numeroContrato;
     }
 
+    /** @param numeroContrato Nuevo número de contrato. */
     public void setNumeroContrato(String numeroContrato) {
         this.numeroContrato = numeroContrato;
     }
 
+    /** @return Objeto del contrato. */
     public String getObjetoContrato() {
         return objetoContrato;
     }
 
+    /** @param objetoContrato Nuevo objeto del contrato. */
     public void setObjetoContrato(String objetoContrato) {
         this.objetoContrato = objetoContrato;
     }
 
+    /** @return Fecha de creación. */
     public LocalDate getFechaCreacion() {
         return fechaCreacion;
     }
 
+    /** @param fechaCreacion Nueva fecha de creación. */
     public void setFechaCreacion(LocalDate fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 
+    /** @return Contratante del contrato. */
     public Contratante getContratante() {
         return contratante;
     }
 
+    /** @param contratante Nuevo contratante. */
     public void setContratante(Contratante contratante) {
         this.contratante = contratante;
     }
 
+    /** @return Contratista del contrato. */
     public Contratista getContratista() {
         return contratista;
     }
 
+    /** @param contratista Nuevo contratista. */
     public void setContratista(Contratista contratista) {
         this.contratista = contratista;
     }
 
+    /** @return Valor total del contrato. */
     public double getValorContrato() {
         return valorContrato;
     }
 
+    /** @param valorContrato Nuevo valor del contrato. */
     public void setValorContrato(double valorContrato) {
         this.valorContrato = valorContrato;
     }
 
+    /** @return Plazo de ejecución. */
     public LocalDate getPlazoEjecucion() {
         return plazoEjecucion;
     }
 
+    /** @param plazoEjecucion Nuevo plazo de ejecución. */
     public void setPlazoEjecucion(LocalDate plazoEjecucion) {
         this.plazoEjecucion = plazoEjecucion;
     }
 
+    /** @return Estado actual del contrato. */
     public EstadoContrato getEstado() {
         return estado;
     }
 
+    /** @param estado Nuevo estado del contrato. */
     public void setEstado(EstadoContrato estado) {
         this.estado = estado;
+    }
+
+    /**
+     * Valida que el contrato cumpla las reglas de negocio de su tipo.
+     * Debe ser implementado por cada subclase.
+     *
+     * @return true si el contrato es válido, false en caso contrario.
+     */
+    public abstract boolean validarContrato();
+
+    /**
+     * Retorna la información del contrato formateada.
+     *
+     * @return String con los datos del contrato.
+     */
+    public String consultarInformacion() {
+        return "Número: " + numeroContrato +
+                "\nObjeto: " + objetoContrato +
+                "\nFecha Creación: " + fechaCreacion +
+                "\nContratante: " + (contratante != null ? contratante.getNombre() : "Sin asignar") +
+                "\nContratista: " + (contratista != null ? contratista.getNombre() : "Sin asignar") +
+                "\nValor: $" + String.format("%,.2f", valorContrato) +
+                "\nPlazo Ejecución: " + plazoEjecucion +
+                "\nEstado: " + estado;
+    }
+
+    @Override
+    public String toString() {
+        return "N° " + numeroContrato + " | " + objetoContrato + " | " + estado;
     }
 }

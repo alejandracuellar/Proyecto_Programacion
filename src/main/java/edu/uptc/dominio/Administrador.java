@@ -14,13 +14,13 @@ public class Administrador extends Usuario {
         /**
          * Constructor completo del Administrador.
          *
-         * @param tipoPersona     Tipo de persona.
-         * @param tipoDocumento   Tipo de documento.
+         * @param tipoPersona Tipo de persona.
+         * @param tipoDocumento Tipo de documento.
          * @param numeroDocumento Número de documento.
-         * @param nombre          Nombre completo.
-         * @param correo          Correo electrónico.
-         * @param contrasenia      Contraseña de acceso.
-         * @param telefono        Teléfono de contacto.
+         * @param nombre Nombre completo.
+         * @param correo Correo electrónico.
+         * @param contrasenia Contraseña de acceso.
+         * @param telefono Teléfono de contacto.
          * @param direccion       Dirección de domicilio.
          * @param ciudad          Ciudad de domicilio.
          */

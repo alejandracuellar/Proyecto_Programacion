@@ -47,14 +47,13 @@ public class Application {
      */
     public static void main(String[] args) {
 
-        // Inicializar capas
-        ServicioReporte   svcReporte   = new ServicioReporte();
-        ServicioUsuario   svcUsuario   = new ServicioUsuario();
-        ServicioContrato  svcContrato  = new ServicioContrato(svcReporte);
+        ServicioReporte svcReporte = new ServicioReporte();
+        ServicioUsuario svcUsuario = new ServicioUsuario();
+        ServicioContrato svcContrato = new ServicioContrato(svcReporte);
 
-        ctrlUsuario  = new ControladorUsuario(svcUsuario);
+        ctrlUsuario = new ControladorUsuario(svcUsuario);
         ctrlContrato = new ControladorContrato(svcContrato);
-        ctrlReporte  = new ControladorReporte(svcReporte);
+        ctrlReporte = new ControladorReporte(svcReporte);
 
 
         cargarDemostracion(svcUsuario);
@@ -63,17 +62,15 @@ public class Application {
         while (ejecutando) {
             String[] opciones = {"Iniciar Sesión", "Salir"};
             int op = JOptionPane.showOptionDialog(null,
-                    "Sistema de Contratos Públicos — SECOP II\nUPTC",
-                    "Bienvenido",
-                    JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
-                    null, opciones, opciones[0]);
+                    "Sistema de Contratos Públicos — SECOP II\nUPTC", "Bienvenido",
+                    JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opciones, opciones[0]);
 
             if (op != 0) {
                 JOptionPane.showMessageDialog(null, "¡Hasta luego!");
                 break;
             }
 
-            String correo    = JOptionPane.showInputDialog(null, "Correo electrónico:");
+            String correo= JOptionPane.showInputDialog(null, "Correo electrónico:");
             if (correo == null) continue;
             String contrasena = JOptionPane.showInputDialog(null, "Contraseña:");
             if (contrasena == null) continue;
@@ -99,14 +96,20 @@ public class Application {
         boolean continuar = true;
         while (continuar) {
             String[] opciones = {"Gestionar Contratantes", "Gestionar Contratistas", "Cerrar Sesión"};
-            int op = JOptionPane.showOptionDialog(null,
-                    "Administrador: " + admin.getNombre(), "Menú Administrador",
-                    JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
-                    null, opciones, opciones[0]);
+            int op = JOptionPane.showOptionDialog(null, "Administrador: " +
+                            admin.getNombre(), "Menú Administrador", JOptionPane.DEFAULT_OPTION,
+                    JOptionPane.INFORMATION_MESSAGE, null, opciones, opciones[0]);
             switch (op) {
-                case 0: menuGestionContratantes(); break;
-                case 1: menuGestionContratistas(); break;
-                default: continuar = false;
+                case 0:
+                    menuGestionContratantes();
+                    break;
+
+                case 1:
+                    menuGestionContratistas();
+                    break;
+
+                default:
+                    continuar = false;
             }
         }
     }
@@ -117,31 +120,41 @@ public class Application {
         int op = JOptionPane.showOptionDialog(null, "Gestión de Contratantes", "Contratantes",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opciones, opciones[0]);
         switch (op) {
-            case 0: crearContratante();    break;
-            case 1: consultarContratante(); break;
-            case 2: actualizarContratante(); break;
-            case 3: eliminarContratante(); break;
-            case 4: listarContratantes();  break;
+            case 0:
+                crearContratante();
+                break;
+            case 1:
+                consultarContratante();
+                break;
+            case 2:
+                actualizarContratante();
+                break;
+            case 3:
+                eliminarContratante();
+                break;
+            case 4:
+                listarContratantes();
+                break;
         }
     }
 
     private static void crearContratante() {
         try {
-            String tipoPersona   = pedir("Tipo de persona (natural/jurídica):"); if (tipoPersona == null) return;
-            String tipoDoc       = pedir("Tipo de documento (CC/NIT/CE):");      if (tipoDoc == null) return;
-            String numDoc        = pedir("Número de documento:");                 if (numDoc == null) return;
-            String nombre        = pedir("Nombre completo o razón social:");      if (nombre == null) return;
-            String correo        = pedir("Correo electrónico:");                  if (correo == null) return;
-            String contrasena    = pedir("Contraseña:");                          if (contrasena == null) return;
-            String telefono      = pedir("Teléfono:");                            if (telefono == null) return;
-            String direccion     = pedir("Dirección:");                           if (direccion == null) return;
-            String ciudad        = pedir("Ciudad:");                              if (ciudad == null) return;
-            String sector        = pedir("Sector de la entidad:");                if (sector == null) return;
-            String nivelEntidad  = pedir("Nivel de entidad:");                    if (nivelEntidad == null) return;
-            String codigoEntidad = pedir("Código único de entidad:");             if (codigoEntidad == null) return;
+            String tipoPersona = pedir("Tipo de persona (natural/jurídica):"); if (tipoPersona == null) return;
+            String tipoDoc = pedir("Tipo de documento (CC/NIT/CE):"); if (tipoDoc == null) return;
+            String numDoc = pedir("Número de documento:"); if (numDoc == null) return;
+            String nombre = pedir("Nombre completo o razón social:"); if (nombre == null) return;
+            String correo = pedir("Correo electrónico:"); if (correo == null) return;
+            String contrasena= pedir("Contraseña:"); if (contrasena == null) return;
+            String telefono= pedir("Teléfono:"); if (telefono == null) return;
+            String direccion= pedir("Dirección:"); if (direccion == null) return;
+            String ciudad = pedir("Ciudad:"); if (ciudad == null) return;
+            String sector = pedir("Sector de la entidad:"); if (sector == null) return;
+            String nivelEntidad  = pedir("Nivel de entidad:");if (nivelEntidad == null) return;
+            String codigoEntidad = pedir("Código único de entidad:"); if (codigoEntidad == null) return;
 
-            Contratante c = new Contratante(tipoPersona, tipoDoc, numDoc, nombre, correo,
-                    contrasena, telefono, direccion, ciudad, sector, nivelEntidad, codigoEntidad);
+            Contratante c = new Contratante(tipoPersona, tipoDoc, numDoc, nombre, correo, contrasena, telefono,
+                    direccion, ciudad, sector, nivelEntidad, codigoEntidad);
             ctrlUsuario.registrarContratante(c);
             exito("Contratante registrado exitosamente.");
 
@@ -163,7 +176,8 @@ public class Application {
 
     private static void actualizarContratante() {
         String doc = pedir("Documento del contratante a actualizar:");
-        if (doc == null) return;
+        if (doc == null)
+            return;
         try {
             Contratante c = ctrlUsuario.buscarContratante(doc.trim());
             String nombre = pedir("Nuevo nombre (actual: " + c.getNombre() + ") — vacío para conservar:");
@@ -194,7 +208,7 @@ public class Application {
     private static void listarContratantes() {
         List<Contratante> lista = ctrlUsuario.obtenerContratantes();
         if (lista.isEmpty()) { info("No hay contratantes registrados."); return; }
-        StringBuilder sb = new StringBuilder("=== Contratantes ===\n\n");
+        StringBuilder sb = new StringBuilder("CONTRATANTES\n\n");
         for (Contratante c : lista)
             sb.append("• ").append(c.getNombre())
                     .append(" | ").append(c.getNumeroDocumento())
@@ -208,27 +222,37 @@ public class Application {
         int op = JOptionPane.showOptionDialog(null, "Gestión de Contratistas", "Contratistas",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opciones, opciones[0]);
         switch (op) {
-            case 0: crearContratista();    break;
-            case 1: consultarContratista(); break;
-            case 2: actualizarContratista(); break;
-            case 3: eliminarContratista(); break;
-            case 4: listarContratistas();  break;
+            case 0:
+                crearContratista();
+                break;
+            case 1:
+                consultarContratista();
+                break;
+            case 2:
+                actualizarContratista();
+                break;
+            case 3:
+                eliminarContratista();
+                break;
+            case 4:
+                listarContratistas();
+                break;
         }
     }
 
     private static void crearContratista() {
         try {
             String tipoPersona = pedir("Tipo de persona (natural/jurídica):"); if (tipoPersona == null) return;
-            String tipoDoc     = pedir("Tipo de documento (CC/NIT/CE):");      if (tipoDoc == null) return;
-            String numDoc      = pedir("Número de documento:");                 if (numDoc == null) return;
-            String nombre      = pedir("Nombre completo o razón social:");      if (nombre == null) return;
-            String correo      = pedir("Correo electrónico:");                  if (correo == null) return;
-            String contrasena  = pedir("Contraseña:");                          if (contrasena == null) return;
-            String telefono    = pedir("Teléfono:");                            if (telefono == null) return;
-            String direccion   = pedir("Dirección:");                           if (direccion == null) return;
-            String ciudad      = pedir("Ciudad:");                              if (ciudad == null) return;
-            boolean esPublica  = confirmar("¿Es una entidad pública?");
-            String area        = pedir("Área de desempeño:");                   if (area == null) return;
+            String tipoDoc= pedir("Tipo de documento (CC/NIT/CE):");if (tipoDoc == null) return;
+            String numDoc = pedir("Número de documento:"); if (numDoc == null) return;
+            String nombre = pedir("Nombre completo o razón social:"); if (nombre == null) return;
+            String correo = pedir("Correo electrónico:"); if (correo == null) return;
+            String contrasena = pedir("Contraseña:"); if (contrasena == null) return;
+            String telefono = pedir("Teléfono:"); if (telefono == null) return;
+            String direccion = pedir("Dirección:"); if (direccion == null) return;
+            String ciudad  = pedir("Ciudad:"); if (ciudad == null) return;
+            boolean esPublica = confirmar("¿Es una entidad pública?");
+            String area  = pedir("Área de desempeño:"); if (area == null) return;
 
             Contratista c = new Contratista(tipoPersona, tipoDoc, numDoc, nombre, correo,
                     contrasena, telefono, direccion, ciudad, esPublica, area);
@@ -284,10 +308,9 @@ public class Application {
     private static void listarContratistas() {
         List<Contratista> lista = ctrlUsuario.obtenerContratistas();
         if (lista.isEmpty()) { info("No hay contratistas registrados."); return; }
-        StringBuilder sb = new StringBuilder("=== Contratistas ===\n\n");
+        StringBuilder sb = new StringBuilder("CONTRATISTAS\n\n");
         for (Contratista c : lista)
-            sb.append("• ").append(c.getNombre())
-                    .append(" | ").append(c.getNumeroDocumento())
+            sb.append("• ").append(c.getNombre()).append(" | ").append(c.getNumeroDocumento())
                     .append(" | ").append(c.getAreaDesempenio()).append("\n");
         info(sb.toString());
     }
@@ -306,12 +329,24 @@ public class Application {
                     JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
                     null, opciones, opciones[0]);
             switch (op) {
-                case 0: menuCrearContrato(contratante); break;
-                case 1: consultarContrato();   break;
-                case 2: actualizarContrato();  break;
-                case 3: eliminarContrato();    break;
-                case 4: listarMisContratos(contratante); break;
-                case 5: menuReportes();        break;
+                case 0:
+                    menuCrearContrato(contratante);
+                    break;
+                case 1:
+                    consultarContrato();
+                    break;
+                case 2:
+                    actualizarContrato();
+                    break;
+                case 3:
+                    eliminarContrato();
+                    break;
+                case 4:
+                    listarMisContratos(contratante);
+                    break;
+                case 5:
+                    menuReportes();
+                    break;
                 default: continuar = false;
             }
         }
@@ -323,25 +358,29 @@ public class Application {
         int tipo = JOptionPane.showOptionDialog(null, "Tipo de contrato:", "Crear Contrato",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, tipos, tipos[0]);
         switch (tipo) {
-            case 0: crearContratoPrestacion(contratante);  break;
-            case 1: crearContratoCompraVenta(contratante); break;
-            case 2: crearContratoObraPublica(contratante); break;
+            case 0:
+                crearContratoPrestacion(contratante);
+                break;
+            case 1:
+                crearContratoCompraVenta(contratante);
+                break;
+            case 2:
+                crearContratoObraPublica(contratante);
+                break;
         }
     }
 
     private static void crearContratoPrestacion(Contratante contratante) {
         try {
-            String[] base    = solicitarDatosBase();          if (base == null) return;
-            String perfil    = pedir("Perfil requerido:");    if (perfil == null) return;
-            String entregas  = pedir("Entregables:");         if (entregas == null) return;
+            String[] base= solicitarDatosBase(); if (base == null) return;
+            String perfil= pedir("Perfil requerido:"); if (perfil == null) return;
+            String entregas  = pedir("Entregables:"); if (entregas == null) return;
             String honorario = pedir("Honorario mensual ($):"); if (honorario == null) return;
 
             Contratista contratista = obtenerContratistaSiHayDoc(base[5]);
             ContratoPrestacionServicio c = new ContratoPrestacionServicio(
-                    base[0], base[1],
-                    LocalDate.parse(base[2].trim(), FMT), contratante, contratista,
-                    Double.parseDouble(base[4].trim()),
-                    LocalDate.parse(base[3].trim(), FMT),
+                    base[0], base[1],LocalDate.parse(base[2].trim(), FMT), contratante, contratista,
+                    Double.parseDouble(base[4].trim()), LocalDate.parse(base[3].trim(), FMT),
                     perfil, entregas, Double.parseDouble(honorario.trim()));
             ctrlContrato.crearContrato(c);
             exito("Contrato de Prestación de Servicios creado.");
@@ -356,13 +395,13 @@ public class Application {
 
     private static void crearContratoCompraVenta(Contratante contratante) {
         try {
-            String[] base  = solicitarDatosBase();             if (base == null) return;
-            String item    = pedir("Ítem o bien a adquirir:"); if (item == null) return;
-            String marca   = pedir("Marca:");                  if (marca == null) return;
-            String modelo  = pedir("Modelo:");                 if (modelo == null) return;
-            String serie   = pedir("Serie:");                  if (serie == null) return;
-            String valUnit = pedir("Valor unitario ($):");     if (valUnit == null) return;
-            String cant    = pedir("Cantidad a adquirir:");    if (cant == null) return;
+            String[] base  = solicitarDatosBase(); if (base == null) return;
+            String item = pedir("Ítem o bien a adquirir:"); if (item == null) return;
+            String marca= pedir("Marca:"); if (marca == null) return;
+            String modelo = pedir("Modelo:");  if (modelo == null) return;
+            String serie = pedir("Serie:"); if (serie == null) return;
+            String valUnit = pedir("Valor unitario ($):"); if (valUnit == null) return;
+            String cant = pedir("Cantidad a adquirir:"); if (cant == null) return;
 
             Contratista contratista = obtenerContratistaSiHayDoc(base[5]);
             ContratoCompraVenta c = new ContratoCompraVenta(
@@ -385,9 +424,9 @@ public class Application {
 
     private static void crearContratoObraPublica(Contratante contratante) {
         try {
-            String[] base    = solicitarDatosBase();                                        if (base == null) return;
+            String[] base = solicitarDatosBase(); if (base == null) return;
             String ubicacion = pedir("Ubicación de la obra (dirección urbana o rural):"); if (ubicacion == null) return;
-            String area      = pedir("Área de intervención (m²):");                        if (area == null) return;
+            String area = pedir("Área de intervención (m²):");if (area == null) return;
 
             Contratista contratista = obtenerContratistaSiHayDoc(base[5]);
             ContratoObraPublica c = new ContratoObraPublica(
@@ -449,7 +488,7 @@ public class Application {
     private static void listarMisContratos(Contratante contratante) {
         List<Contrato> lista = ctrlContrato.obtenerContratosPorContratante(contratante.getNumeroDocumento());
         if (lista.isEmpty()) { info("No tiene contratos registrados."); return; }
-        StringBuilder sb = new StringBuilder("=== Mis Contratos ===\n\n");
+        StringBuilder sb = new StringBuilder("MIS CONTRATOS\n\n");
         for (Contrato c : lista) sb.append("• ").append(c).append("\n");
         info(sb.toString());
     }
@@ -469,11 +508,20 @@ public class Application {
                     JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
                     null, opciones, opciones[0]);
             switch (op) {
-                case 0: verContratosDisponibles(); break;
-                case 1: seleccionarContrato(contratista); break;
-                case 2: cambiarEstadoContrato();   break;
-                case 3: menuReportes();            break;
-                default: continuar = false;
+                case 0:
+                    verContratosDisponibles();
+                    break;
+                case 1:
+                    seleccionarContrato(contratista);
+                    break;
+                case 2:
+                    cambiarEstadoContrato();
+                    break;
+                case 3:
+                    menuReportes();
+                    break;
+                default:
+                    continuar = false;
             }
         }
     }
@@ -481,7 +529,7 @@ public class Application {
     private static void verContratosDisponibles() {
         List<Contrato> lista = ctrlContrato.obtenerContratosDisponibles();
         if (lista.isEmpty()) { info("No hay contratos disponibles."); return; }
-        StringBuilder sb = new StringBuilder("=== Contratos Disponibles ===\n\n");
+        StringBuilder sb = new StringBuilder("CONTRATOS DISPONIBLES\n\n");
         for (Contrato c : lista) sb.append("• ").append(c).append("\n");
         info(sb.toString());
     }
@@ -530,15 +578,19 @@ public class Application {
         int op = JOptionPane.showOptionDialog(null, "Reportes de Interventoría", "Reportes",
                 JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opciones, opciones[0]);
         switch (op) {
-            case 0: verTodosLosReportes();      break;
-            case 1: verReportesPorContrato();   break;
+            case 0:
+                verTodosLosReportes();
+                break;
+            case 1:
+                verReportesPorContrato();
+                break;
         }
     }
 
     private static void verTodosLosReportes() {
         List<ReporteInterventoria> lista = ctrlReporte.obtenerTodosLosReportes();
         if (lista.isEmpty()) { info("No hay reportes registrados."); return; }
-        StringBuilder sb = new StringBuilder("=== Todos los Reportes ===\n\n");
+        StringBuilder sb = new StringBuilder("TODOS LOS REPORTES\n\n");
         for (ReporteInterventoria r : lista)
             sb.append(r).append("\n────────────────────────\n");
         info(sb.toString());
@@ -549,7 +601,7 @@ public class Application {
         if (num == null) return;
         List<ReporteInterventoria> lista = ctrlReporte.obtenerReportesPorContrato(num.trim());
         if (lista.isEmpty()) { info("No hay reportes para el contrato " + num + "."); return; }
-        StringBuilder sb = new StringBuilder("=== Reportes del Contrato " + num + " ===\n\n");
+        StringBuilder sb = new StringBuilder("REPORTES DEL CONTRATO" + num + "\n\n");
         for (ReporteInterventoria r : lista)
             sb.append(r).append("\n────────────────────────\n");
         info(sb.toString());
@@ -563,12 +615,12 @@ public class Application {
      *         o null si el usuario cancela.
      */
     private static String[] solicitarDatosBase() {
-        String num    = pedir("Número de contrato:");             if (num == null) return null;
-        String objeto = pedir("Objeto del contrato:");           if (objeto == null) return null;
-        String fCrea  = pedir("Fecha creación (dd/MM/yyyy):");   if (fCrea == null) return null;
+        String num = pedir("Número de contrato:"); if (num == null) return null;
+        String objeto = pedir("Objeto del contrato:"); if (objeto == null) return null;
+        String fCrea = pedir("Fecha creación (dd/MM/yyyy):"); if (fCrea == null) return null;
         String fPlazo = pedir("Plazo ejecución (dd/MM/yyyy):"); if (fPlazo == null) return null;
-        String valor  = pedir("Valor total del contrato ($):"); if (valor == null) return null;
-        String doc    = pedir("Documento del contratista (vacío si no aplica):");
+        String valor = pedir("Valor total del contrato ($):"); if (valor == null) return null;
+        String doc  = pedir("Documento del contratista (vacío si no aplica):");
         if (doc == null) doc = "";
         return new String[]{num, objeto, fCrea, fPlazo, valor, doc};
     }
@@ -606,17 +658,15 @@ public class Application {
                     false, "Ingeniería de Sistemas"
             ));
         } catch (UsuarioYaExisteException e) {
-            // No ocurre al iniciar por primera vez
         }
     }
 
 
-    private static String pedir(String msg)   { return JOptionPane.showInputDialog(null, msg); }
-    private static void info(String msg)      { JOptionPane.showMessageDialog(null, msg, "Información", JOptionPane.INFORMATION_MESSAGE); }
-    private static void exito(String msg)     { JOptionPane.showMessageDialog(null, msg, "Éxito", JOptionPane.INFORMATION_MESSAGE); }
-    private static void error(String msg)     { JOptionPane.showMessageDialog(null, msg, "Error", JOptionPane.ERROR_MESSAGE); }
+    private static String pedir(String msg){ return JOptionPane.showInputDialog(null, msg); }
+    private static void info(String msg){ JOptionPane.showMessageDialog(null, msg, "Información", JOptionPane.INFORMATION_MESSAGE); }
+    private static void exito(String msg) { JOptionPane.showMessageDialog(null, msg, "Éxito", JOptionPane.INFORMATION_MESSAGE); }
+    private static void error(String msg) { JOptionPane.showMessageDialog(null, msg, "Error", JOptionPane.ERROR_MESSAGE); }
     private static boolean confirmar(String m){
-        return JOptionPane.showConfirmDialog(null, m, "Confirmar",
-                JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
+        return JOptionPane.showConfirmDialog(null, m, "Confirmar", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION;
     }
 }

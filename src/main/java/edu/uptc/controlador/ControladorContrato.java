@@ -12,7 +12,7 @@ import java.util.List;
  * Recibe los datos ya capturados, llama al servicio y propaga las excepciones.
  * No contiene JOptionPane ni lógica de negocio.
  *
- * @author Alejandra Cuellar, Laura Gonzalez, Elkin Pineda
+ * @author Alejandra Cuellar, Laura González, Elkin Pineda
  * @version 1.0
  */
 public class ControladorContrato {
@@ -75,8 +75,7 @@ public class ControladorContrato {
      * @return Contrato encontrado.
      * @throws ContratoNoEncontradoException Si no existe.
      */
-    public Contrato buscarContrato(String numeroContrato)
-            throws ContratoNoEncontradoException {
+    public Contrato buscarContrato(String numeroContrato) throws ContratoNoEncontradoException {
         return servicioContrato.buscarContrato(numeroContrato);
     }
 
@@ -88,10 +87,8 @@ public class ControladorContrato {
      * @throws ActualizacionNoPermitidaException Si no está en estado PUBLICADO.
      * @throws ContratoInvalidoException         Si no supera las validaciones.
      */
-    public void actualizarContrato(Contrato contrato)
-            throws ContratoNoEncontradoException,
-            ActualizacionNoPermitidaException,
-            ContratoInvalidoException {
+    public void actualizarContrato(Contrato contrato) throws ContratoNoEncontradoException,
+            ActualizacionNoPermitidaException, ContratoInvalidoException {
         servicioContrato.actualizarContrato(contrato);
     }
 
@@ -102,8 +99,7 @@ public class ControladorContrato {
      * @throws ContratoNoEncontradoException   Si no existe.
      * @throws EliminacionNoPermitidaException Si no está en estado PUBLICADO.
      */
-    public void eliminarContrato(String numeroContrato)
-            throws ContratoNoEncontradoException,
+    public void eliminarContrato(String numeroContrato) throws ContratoNoEncontradoException,
             EliminacionNoPermitidaException {
         servicioContrato.eliminarContrato(numeroContrato);
     }
@@ -117,11 +113,8 @@ public class ControladorContrato {
      * @throws ContratoNoEncontradoException     Si no existe el contrato.
      * @throws TransicionEstadoInvalidaException Si la transición no es válida.
      */
-    public void cambiarEstadoContrato(String numeroContrato,
-                                      EstadoContrato nuevoEstado,
-                                      String informe)
-            throws ContratoNoEncontradoException,
-            TransicionEstadoInvalidaException {
+    public void cambiarEstadoContrato(String numeroContrato, EstadoContrato nuevoEstado, String informe)
+            throws ContratoNoEncontradoException,TransicionEstadoInvalidaException {
         servicioContrato.cambiarEstadoContrato(numeroContrato, nuevoEstado, informe);
     }
 

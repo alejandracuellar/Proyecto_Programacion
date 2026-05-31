@@ -35,8 +35,7 @@ public class ControladorUsuario {
      * @return Usuario autenticado.
      * @throws CredencialesInvalidasException Si las credenciales no son válidas.
      */
-    public Usuario autenticar(String correo, String contrasena)
-            throws CredencialesInvalidasException {
+    public Usuario autenticar(String correo, String contrasena) throws CredencialesInvalidasException {
         return servicioUsuario.autenticar(correo, contrasena);
     }
 
@@ -47,8 +46,7 @@ public class ControladorUsuario {
      * @param contratante Contratante a registrar.
      * @throws UsuarioYaExisteException Si el correo ya está registrado.
      */
-    public void registrarContratante(Contratante contratante)
-            throws UsuarioYaExisteException {
+    public void registrarContratante(Contratante contratante) throws UsuarioYaExisteException {
         servicioUsuario.registrarContratante(contratante);
     }
 
@@ -68,8 +66,7 @@ public class ControladorUsuario {
      * @return Contratante encontrado.
      * @throws UsuarioNoEncontradoException Si no existe.
      */
-    public Contratante buscarContratante(String numeroDocumento)
-            throws UsuarioNoEncontradoException {
+    public Contratante buscarContratante(String numeroDocumento) throws UsuarioNoEncontradoException {
         return servicioUsuario.buscarContratante(numeroDocumento);
     }
 
@@ -79,8 +76,7 @@ public class ControladorUsuario {
      * @param contratante Contratante con datos nuevos.
      * @throws UsuarioNoEncontradoException Si no existe.
      */
-    public void actualizarContratante(Contratante contratante)
-            throws UsuarioNoEncontradoException {
+    public void actualizarContratante(Contratante contratante) throws UsuarioNoEncontradoException {
         servicioUsuario.actualizarContratante(contratante);
     }
 
@@ -90,8 +86,7 @@ public class ControladorUsuario {
      * @param numeroDocumento Documento del contratante.
      * @throws UsuarioNoEncontradoException Si no existe.
      */
-    public void eliminarContratante(String numeroDocumento)
-            throws UsuarioNoEncontradoException {
+    public void eliminarContratante(String numeroDocumento) throws UsuarioNoEncontradoException {
         servicioUsuario.eliminarContratante(numeroDocumento);
     }
 
@@ -102,8 +97,7 @@ public class ControladorUsuario {
      * @param contratista Contratista a registrar.
      * @throws UsuarioYaExisteException Si el correo ya está registrado.
      */
-    public void registrarContratista(Contratista contratista)
-            throws UsuarioYaExisteException {
+    public void registrarContratista(Contratista contratista) throws UsuarioYaExisteException {
         servicioUsuario.registrarContratista(contratista);
     }
 
@@ -123,8 +117,7 @@ public class ControladorUsuario {
      * @return Contratista encontrado.
      * @throws UsuarioNoEncontradoException Si no existe.
      */
-    public Contratista buscarContratista(String numeroDocumento)
-            throws UsuarioNoEncontradoException {
+    public Contratista buscarContratista(String numeroDocumento) throws UsuarioNoEncontradoException {
         return servicioUsuario.buscarContratista(numeroDocumento);
     }
 
@@ -134,8 +127,7 @@ public class ControladorUsuario {
      * @param contratista Contratista con datos nuevos.
      * @throws UsuarioNoEncontradoException Si no existe.
      */
-    public void actualizarContratista(Contratista contratista)
-            throws UsuarioNoEncontradoException {
+    public void actualizarContratista(Contratista contratista) throws UsuarioNoEncontradoException {
         servicioUsuario.actualizarContratista(contratista);
     }
 
@@ -145,8 +137,7 @@ public class ControladorUsuario {
      * @param numeroDocumento Documento del contratista.
      * @throws UsuarioNoEncontradoException Si no existe.
      */
-    public void eliminarContratista(String numeroDocumento)
-            throws UsuarioNoEncontradoException {
+    public void eliminarContratista(String numeroDocumento) throws UsuarioNoEncontradoException {
         servicioUsuario.eliminarContratista(numeroDocumento);
     }
 }

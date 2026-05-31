@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class ServicioContrato {
 
-    private List<Contrato>   contratos;
+    private List<Contrato>contratos;
     private ServicioReporte  servicioReporte;
 
     /**
@@ -28,7 +28,7 @@ public class ServicioContrato {
      * @param servicioReporte Servicio de reportes de interventoría.
      */
     public ServicioContrato(ServicioReporte servicioReporte) {
-        this.contratos       = new ArrayList<>();
+        this.contratos = new ArrayList<>();
         this.servicioReporte = servicioReporte;
     }
 
@@ -63,8 +63,7 @@ public class ServicioContrato {
     public List<Contrato> obtenerContratosPorContratante(String numeroDocContratante) {
         List<Contrato> resultado = new ArrayList<>();
         for (Contrato c : contratos)
-            if (c.getContratante() != null &&
-                    c.getContratante().getNumeroDocumento().equals(numeroDocContratante))
+            if (c.getContratante() != null && c.getContratante().getNumeroDocumento().equals(numeroDocContratante))
                 resultado.add(c);
         return resultado;
     }
@@ -77,8 +76,7 @@ public class ServicioContrato {
     public List<Contrato> obtenerContratosDisponibles() {
         List<Contrato> disponibles = new ArrayList<>();
         for (Contrato c : contratos)
-            if (c.getEstado() == EstadoContrato.PUBLICADO ||
-                    c.getEstado() == EstadoContrato.LICITACION)
+            if (c.getEstado() == EstadoContrato.PUBLICADO || c.getEstado() == EstadoContrato.LICITACION)
                 disponibles.add(c);
         return disponibles;
     }
@@ -93,7 +91,8 @@ public class ServicioContrato {
     public Contrato buscarContrato(String numeroContrato)
             throws ContratoNoEncontradoException {
         for (Contrato c : contratos)
-            if (c.getNumeroContrato().equals(numeroContrato)) return c;
+            if (c.getNumeroContrato().equals(numeroContrato))
+                return c;
         throw new ContratoNoEncontradoException(numeroContrato);
     }
 
@@ -102,14 +101,12 @@ public class ServicioContrato {
      * Actualiza los datos de un contrato. Solo se permite si está en estado PUBLICADO.
      *
      * @param contrato Contrato con los datos actualizados.
-     * @throws ContratoNoEncontradoException     Si no existe el contrato.
+     * @throws ContratoNoEncontradoException Si no existe el contrato.
      * @throws ActualizacionNoPermitidaException Si el contrato no está en estado PUBLICADO.
-     * @throws ContratoInvalidoException         Si no supera las validaciones.
+     * @throws ContratoInvalidoException Si no supera las validaciones.
      */
-    public void actualizarContrato(Contrato contrato)
-            throws ContratoNoEncontradoException,
-            ActualizacionNoPermitidaException,
-            ContratoInvalidoException {
+    public void actualizarContrato(Contrato contrato) throws ContratoNoEncontradoException,
+            ActualizacionNoPermitidaException, ContratoInvalidoException {
         Contrato existente = buscarContrato(contrato.getNumeroContrato());
         if (existente.getEstado() != EstadoContrato.PUBLICADO)
             throw new ActualizacionNoPermitidaException(existente.getEstado());
@@ -129,8 +126,7 @@ public class ServicioContrato {
      * @throws ContratoNoEncontradoException   Si no existe el contrato.
      * @throws EliminacionNoPermitidaException Si el contrato no está en estado PUBLICADO.
      */
-    public void eliminarContrato(String numeroContrato)
-            throws ContratoNoEncontradoException,
+    public void eliminarContrato(String numeroContrato) throws ContratoNoEncontradoException,
             EliminacionNoPermitidaException {
         Contrato existente = buscarContrato(numeroContrato);
         if (existente.getEstado() != EstadoContrato.PUBLICADO)
@@ -149,11 +145,8 @@ public class ServicioContrato {
      * @throws TransicionEstadoInvalidaException Si la transición no sigue el orden establecido.
      * @throws IllegalArgumentException          Si el informe está vacío.
      */
-    public void cambiarEstadoContrato(String numeroContrato,
-                                      EstadoContrato nuevoEstado,
-                                      String informe)
-            throws ContratoNoEncontradoException,
-            TransicionEstadoInvalidaException {
+    public void cambiarEstadoContrato(String numeroContrato, EstadoContrato nuevoEstado, String informe)
+            throws ContratoNoEncontradoException, TransicionEstadoInvalidaException {
         if (informe == null || informe.trim().isEmpty())
             throw new IllegalArgumentException("El informe de interventoría es obligatorio.");
         Contrato contrato = buscarContrato(numeroContrato);
@@ -177,30 +170,29 @@ public class ServicioContrato {
         if (contrato.getEstado() != EstadoContrato.PUBLICADO &&
                 contrato.getEstado() != EstadoContrato.LICITACION)
             throw new ContratoInvalidoException(
-                    "El contrato N° " + numeroContrato +
-                            " no está disponible. Estado actual: " + contrato.getEstado());
+                    "El contrato N° " + numeroContrato + " no está disponible. Estado actual: " + contrato.getEstado());
         contrato.setContratista(contratista);
     }
 
 
     /** Valida campos base comunes a todo contrato. */
     private void validarCamposBase(Contrato c) {
-        if (c == null)                  throw new IllegalArgumentException("El contrato no puede ser nulo.");
+        if (c == null) throw new IllegalArgumentException("El contrato no puede ser nulo.");
         if (vacio(c.getNumeroContrato()))throw new IllegalArgumentException("El número de contrato es obligatorio.");
         if (vacio(c.getObjetoContrato()))throw new IllegalArgumentException("El objeto del contrato es obligatorio.");
         if (c.getFechaCreacion() == null) throw new IllegalArgumentException("La fecha de creación es obligatoria.");
         if (c.getPlazoEjecucion() == null)throw new IllegalArgumentException("El plazo de ejecución es obligatorio.");
-        if (c.getValorContrato() <= 0)   throw new IllegalArgumentException("El valor del contrato debe ser mayor a cero.");
-        if (c.getContratante() == null)  throw new IllegalArgumentException("El contratante es obligatorio.");
+        if (c.getValorContrato() <= 0) throw new IllegalArgumentException("El valor del contrato debe ser mayor a cero.");
+        if (c.getContratante() == null)throw new IllegalArgumentException("El contratante es obligatorio.");
         if (c.getPlazoEjecucion().isBefore(c.getFechaCreacion()))
             throw new IllegalArgumentException("El plazo de ejecución no puede ser anterior a la fecha de creación.");
     }
 
     /** Aplica las validaciones específicas según el tipo de contrato. */
     private void validarSegunTipo(Contrato c) throws ContratoInvalidoException {
-        if      (c instanceof ContratoPrestacionServicio) validarPrestacion((ContratoPrestacionServicio) c);
-        else if (c instanceof ContratoCompraVenta)        validarCompraVenta((ContratoCompraVenta) c);
-        else if (c instanceof ContratoObraPublica)        validarObraPublica((ContratoObraPublica) c);
+        if(c instanceof ContratoPrestacionServicio) validarPrestacion((ContratoPrestacionServicio) c);
+        else if (c instanceof ContratoCompraVenta)validarCompraVenta((ContratoCompraVenta) c);
+        else if (c instanceof ContratoObraPublica) validarObraPublica((ContratoObraPublica) c);
     }
 
     /**
@@ -210,14 +202,13 @@ public class ServicioContrato {
      */
     private void validarPrestacion(ContratoPrestacionServicio c) throws ContratoInvalidoException {
         if (vacio(c.getPerfilRequerido())) throw new ContratoInvalidoException("El perfil requerido es obligatorio.");
-        if (vacio(c.getEntregables()))     throw new ContratoInvalidoException("Los entregables son obligatorios.");
+        if (vacio(c.getEntregables())) throw new ContratoInvalidoException("Los entregables son obligatorios.");
         if (c.getValorHonorarioMensual() <= 0) throw new ContratoInvalidoException("El honorario mensual debe ser mayor a cero.");
         long meses = ChronoUnit.MONTHS.between(c.getFechaCreacion(), c.getPlazoEjecucion());
         if (meses <= 0) throw new ContratoInvalidoException("El plazo debe ser al menos un mes posterior a la fecha de creación.");
         double total = c.getValorHonorarioMensual() * meses;
         if (Math.abs(total - c.getValorContrato()) >= 0.01)
-            throw new ContratoInvalidoException(
-                    "Honorario mensual × meses (" + meses + " × $" +
+            throw new ContratoInvalidoException("Honorario mensual × meses (" + meses + " × $" +
                             String.format("%,.2f", c.getValorHonorarioMensual()) +
                             " = $" + String.format("%,.2f", total) +
                             ") no coincide con el valor del contrato ($" +
@@ -230,15 +221,14 @@ public class ServicioContrato {
      * @throws ContratoInvalidoException Si el producto no coincide.
      */
     private void validarCompraVenta(ContratoCompraVenta c) throws ContratoInvalidoException {
-        if (vacio(c.getItem()))   throw new ContratoInvalidoException("El ítem es obligatorio.");
-        if (vacio(c.getMarca()))  throw new ContratoInvalidoException("La marca es obligatoria.");
-        if (vacio(c.getModelo())) throw new ContratoInvalidoException("El modelo es obligatorio.");
-        if (vacio(c.getSerie()))  throw new ContratoInvalidoException("La serie es obligatoria.");
-        if (c.getValorUnitario() <= 0)    throw new ContratoInvalidoException("El valor unitario debe ser mayor a cero.");
+        if (vacio(c.getItem()))throw new ContratoInvalidoException("El ítem es obligatorio.");
+        if (vacio(c.getMarca()))throw new ContratoInvalidoException("La marca es obligatoria.");
+        if (vacio(c.getModelo()))throw new ContratoInvalidoException("El modelo es obligatorio.");
+        if (vacio(c.getSerie())) throw new ContratoInvalidoException("La serie es obligatoria.");
+        if (c.getValorUnitario() <= 0) throw new ContratoInvalidoException("El valor unitario debe ser mayor a cero.");
         if (c.getCantidadAdquirir() <= 0) throw new ContratoInvalidoException("La cantidad debe ser mayor a cero.");
         double total = (double) c.getCantidadAdquirir() * c.getValorUnitario();
-        if (Math.abs(total - c.getValorContrato()) >= 0.01)
-            throw new ContratoInvalidoException(
+        if (Math.abs(total - c.getValorContrato()) >= 0.01) throw new ContratoInvalidoException(
                     "Cantidad × valor unitario (" + c.getCantidadAdquirir() + " × $" +
                             String.format("%,.2f", c.getValorUnitario()) +
                             " = $" + String.format("%,.2f", total) +
@@ -252,8 +242,8 @@ public class ServicioContrato {
      * @throws ContratoInvalidoException Si la ubicación está vacía o el área es inválida.
      */
     private void validarObraPublica(ContratoObraPublica c) throws ContratoInvalidoException {
-        if (vacio(c.getUbicacionObra()))    throw new ContratoInvalidoException("La ubicación de la obra es obligatoria.");
-        if (c.getAreaIntervencion() <= 0)   throw new ContratoInvalidoException("El área de intervención debe ser mayor a cero.");
+        if (vacio(c.getUbicacionObra())) throw new ContratoInvalidoException("La ubicación de la obra es obligatoria.");
+        if (c.getAreaIntervencion() <= 0)throw new ContratoInvalidoException("El área de intervención debe ser mayor a cero.");
     }
 
     /** Verifica si ya existe un contrato con el número dado. */
@@ -270,7 +260,8 @@ public class ServicioContrato {
             case LICITACION: return siguiente == EstadoContrato.ADJUDICADO;
             case ADJUDICADO: return siguiente == EstadoContrato.EJECUCION;
             case EJECUCION:  return siguiente == EstadoContrato.FINALIZADO;
-            default:         return false;
+            default:
+                return false;
         }
     }
 

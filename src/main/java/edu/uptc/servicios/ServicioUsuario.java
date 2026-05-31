@@ -26,10 +26,9 @@ public class ServicioUsuario {
         contratantes    = new ArrayList<>();
         contratistas    = new ArrayList<>();
         administradores = new ArrayList<>();
-        administradores.add(new Administrador(
-                "natural", "CC", "1000000000", "Admin Sistema",
-                "admin@secop.gov.co", "admin123",
-                "3000000000", "Calle 1 #1-1", "Bogotá"
+        administradores.add(new Administrador("natural", "CC", "1000000000",
+                "Admin Sistema","admin@secop.gov.co", "admin123", "3000000000",
+                "Calle 1 #1-1", "Bogotá"
         ));
     }
 
@@ -37,7 +36,7 @@ public class ServicioUsuario {
     /**
      * Autentica un usuario verificando correo y contraseña en todos los roles.
      *
-     * @param correo     Correo electrónico.
+     * @param correo Correo electrónico.
      * @param contrasena Contraseña.
      * @return Usuario autenticado.
      * @throws CredencialesInvalidasException Si las credenciales no coinciden con ningún usuario.
@@ -61,18 +60,19 @@ public class ServicioUsuario {
      * @throws UsuarioYaExisteException Si el correo ya está registrado.
      * @throws IllegalArgumentException Si algún campo obligatorio está vacío.
      */
-    public void registrarContratante(Contratante contratante)
-            throws UsuarioYaExisteException {
+    public void registrarContratante(Contratante contratante) throws UsuarioYaExisteException {
         validarCamposUsuario(contratante);
-        if (vacio(contratante.getSector()))        throw new IllegalArgumentException("El sector es obligatorio.");
-        if (vacio(contratante.getNivelEntidad()))  throw new IllegalArgumentException("El nivel de entidad es obligatorio.");
+        if (vacio(contratante.getSector())) throw new IllegalArgumentException("El sector es obligatorio.");
+        if (vacio(contratante.getNivelEntidad())) throw new IllegalArgumentException("El nivel de entidad es obligatorio.");
         if (vacio(contratante.getCodigoEntidad())) throw new IllegalArgumentException("El código de entidad es obligatorio.");
         if (correoExiste(contratante.getCorreo())) throw new UsuarioYaExisteException(contratante.getCorreo());
         contratantes.add(contratante);
     }
 
     /** @return Lista de todos los contratantes registrados. */
-    public List<Contratante> obtenerContratantes() { return new ArrayList<>(contratantes); }
+    public List<Contratante> obtenerContratantes() {
+        return new ArrayList<>(contratantes);
+    }
 
     /**
      * Busca un contratante por número de documento.
@@ -125,8 +125,7 @@ public class ServicioUsuario {
      * @throws UsuarioYaExisteException Si el correo ya está registrado.
      * @throws IllegalArgumentException Si algún campo obligatorio está vacío.
      */
-    public void registrarContratista(Contratista contratista)
-            throws UsuarioYaExisteException {
+    public void registrarContratista(Contratista contratista) throws UsuarioYaExisteException {
         validarCamposUsuario(contratista);
         if (vacio(contratista.getAreaDesempenio()))
             throw new IllegalArgumentException("El área de desempeño es obligatoria.");
@@ -135,7 +134,9 @@ public class ServicioUsuario {
     }
 
     /** @return Lista de todos los contratistas registrados. */
-    public List<Contratista> obtenerContratistas() { return new ArrayList<>(contratistas); }
+    public List<Contratista> obtenerContratistas() {
+        return new ArrayList<>(contratistas);
+    }
 
     /**
      * Busca un contratista por número de documento.
@@ -147,7 +148,8 @@ public class ServicioUsuario {
     public Contratista buscarContratista(String numeroDocumento)
             throws UsuarioNoEncontradoException {
         for (Contratista c : contratistas)
-            if (c.getNumeroDocumento().equals(numeroDocumento)) return c;
+            if (c.getNumeroDocumento().equals(numeroDocumento))
+                return c;
         throw new UsuarioNoEncontradoException(numeroDocumento);
     }
 
@@ -157,8 +159,7 @@ public class ServicioUsuario {
      * @param contratista Contratista con datos actualizados.
      * @throws UsuarioNoEncontradoException Si no existe el contratista.
      */
-    public void actualizarContratista(Contratista contratista)
-            throws UsuarioNoEncontradoException {
+    public void actualizarContratista(Contratista contratista) throws UsuarioNoEncontradoException {
         for (int i = 0; i < contratistas.size(); i++) {
             if (contratistas.get(i).getNumeroDocumento().equals(contratista.getNumeroDocumento())) {
                 contratistas.set(i, contratista);
@@ -174,8 +175,7 @@ public class ServicioUsuario {
      * @param numeroDocumento Documento del contratista a eliminar.
      * @throws UsuarioNoEncontradoException Si no existe el contratista.
      */
-    public void eliminarContratista(String numeroDocumento)
-            throws UsuarioNoEncontradoException {
+    public void eliminarContratista(String numeroDocumento) throws UsuarioNoEncontradoException {
         buscarContratista(numeroDocumento);
         contratistas.removeIf(c -> c.getNumeroDocumento().equals(numeroDocumento));
     }
@@ -183,21 +183,21 @@ public class ServicioUsuario {
 
     private boolean correoExiste(String correo) {
         for (Administrador a : administradores) if (a.getCorreo().equals(correo)) return true;
-        for (Contratante c   : contratantes)    if (c.getCorreo().equals(correo)) return true;
-        for (Contratista c   : contratistas)    if (c.getCorreo().equals(correo)) return true;
+        for (Contratante c: contratantes) if (c.getCorreo().equals(correo)) return true;
+        for (Contratista c: contratistas)if (c.getCorreo().equals(correo)) return true;
         return false;
     }
 
     private void validarCamposUsuario(Usuario u) {
-        if (vacio(u.getTipoPersona()))     throw new IllegalArgumentException("Tipo de persona obligatorio.");
-        if (vacio(u.getTipoDocumento()))   throw new IllegalArgumentException("Tipo de documento obligatorio.");
+        if (vacio(u.getTipoPersona())) throw new IllegalArgumentException("Tipo de persona obligatorio.");
+        if (vacio(u.getTipoDocumento())) throw new IllegalArgumentException("Tipo de documento obligatorio.");
         if (vacio(u.getNumeroDocumento())) throw new IllegalArgumentException("Número de documento obligatorio.");
-        if (vacio(u.getNombre()))          throw new IllegalArgumentException("Nombre obligatorio.");
-        if (vacio(u.getCorreo()))          throw new IllegalArgumentException("Correo obligatorio.");
-        if (vacio(u.getContrasenia()))      throw new IllegalArgumentException("Contraseña obligatoria.");
-        if (vacio(u.getTelefono()))        throw new IllegalArgumentException("Teléfono obligatorio.");
-        if (vacio(u.getDireccion()))       throw new IllegalArgumentException("Dirección obligatoria.");
-        if (vacio(u.getCiudad()))          throw new IllegalArgumentException("Ciudad obligatoria.");
+        if (vacio(u.getNombre())) throw new IllegalArgumentException("Nombre obligatorio.");
+        if (vacio(u.getCorreo())) throw new IllegalArgumentException("Correo obligatorio.");
+        if (vacio(u.getContrasenia())) throw new IllegalArgumentException("Contraseña obligatoria.");
+        if (vacio(u.getTelefono())) throw new IllegalArgumentException("Teléfono obligatorio.");
+        if (vacio(u.getDireccion())) throw new IllegalArgumentException("Dirección obligatoria.");
+        if (vacio(u.getCiudad())) throw new IllegalArgumentException("Ciudad obligatoria.");
     }
 
     private boolean vacio(String s) { return s == null || s.trim().isEmpty(); }

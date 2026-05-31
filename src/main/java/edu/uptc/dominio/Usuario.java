@@ -1,11 +1,10 @@
 package edu.uptc.dominio;
 
-import javax.swing.*;
-
 /**
  * Clase abstracta que representa un usuario del sistema de contratos públicos.
- * Define los atributos comunes a todos los roles del sistema.
- * Aplica encapsulamiento y sirve como base para herencia.
+ * Define únicamente los atributos comunes a todos los roles y sus accesores.
+ * Aplica encapsulamiento mediante atributos protegidos y métodos de acceso.
+ * La lógica de negocio está delegada a la capa de servicios.
  *
  * @author Alejandra Cuellar, Laura Gonzalez, Elkin Pineda
  * @version 1.0
@@ -47,25 +46,27 @@ public abstract class Usuario {
      * @param numeroDocumento Número del documento.
      * @param nombre          Nombre completo o razón social.
      * @param correo          Correo electrónico.
-     * @param contrasenia     Contraseña de acceso.
+     * @param contrasenia      Contraseña de acceso.
      * @param telefono        Número de teléfono.
      * @param direccion       Dirección de domicilio.
      * @param ciudad          Ciudad de domicilio.
      */
-    public Usuario(String tipoPersona, String tipoDocumento, String numeroDocumento, String nombre, String correo, String contrasenia, String telefono, String direccion, String ciudad) {
-        this.tipoPersona = tipoPersona;
-        this.tipoDocumento = tipoDocumento;
-        this.numeroDocumento = numeroDocumento;
-        this.nombre = nombre;
-        this.correo = correo;
-        this.contrasenia = contrasenia;
-        this.telefono = telefono;
-        this.direccion = direccion;
-        this.ciudad = ciudad;
+    public Usuario(String tipoPersona, String tipoDocumento, String numeroDocumento, String nombre, String correo,
+                   String contrasenia, String telefono, String direccion, String ciudad) {
+        this.tipoPersona      = tipoPersona;
+        this.tipoDocumento    = tipoDocumento;
+        this.numeroDocumento  = numeroDocumento;
+        this.nombre           = nombre;
+        this.correo           = correo;
+        this.contrasenia       = contrasenia;
+        this.telefono         = telefono;
+        this.direccion        = direccion;
+        this.ciudad           = ciudad;
     }
 
+
     /** @return Tipo de persona. */
-    public String getTipoPersona() {
+    public String getTipoPersona(){
         return tipoPersona;
     }
 
@@ -80,67 +81,67 @@ public abstract class Usuario {
     }
 
     /** @param tipoDocumento Nuevo tipo de documento. */
-    public void setTipoDocumento(String tipoDocumento) {
+    public void setTipoDocumento(String tipoDocumento){
         this.tipoDocumento = tipoDocumento;
     }
 
     /** @return Número de documento. */
-    public String getNumeroDocumento() {
+    public String getNumeroDocumento(){
         return numeroDocumento;
     }
 
     /** @param numeroDocumento Nuevo número de documento. */
-    public void setNumeroDocumento(String numeroDocumento) {
+    public void setNumeroDocumento(String numeroDocumento){
         this.numeroDocumento = numeroDocumento;
     }
 
     /** @return Nombre del usuario. */
-    public String getNombre() {
+    public String getNombre(){
         return nombre;
     }
 
     /** @param nombre Nuevo nombre. */
-    public void setNombre(String nombre) {
+    public void setNombre(String nombre){
         this.nombre = nombre;
     }
 
     /** @return Correo electrónico. */
-    public String getCorreo() {
+    public String getCorreo(){
         return correo;
     }
 
     /** @param correo Nuevo correo. */
-    public void setCorreo(String correo) {
+    public void setCorreo(String correo){
         this.correo = correo;
     }
 
     /** @return Contraseña. */
-    public String getContrasenia() {
+    public String getContrasenia(){
         return contrasenia;
     }
 
     /** @param contrasenia Nueva contraseña. */
-    public void setContrasenia(String contrasenia) {
-        this.contrasenia = contrasenia;
-    }
+    public void setContrasenia(String contrasenia){
+        this.contrasenia = contrasenia; }
+
 
     /** @return Teléfono. */
-    public String getTelefono() {
+    public String getTelefono(){
         return telefono;
     }
 
     /** @param telefono Nuevo teléfono. */
-    public void setTelefono(String telefono) {
+    public void setTelefono(String telefono){
         this.telefono = telefono;
     }
 
     /** @return Dirección. */
-    public String getDireccion() {
+    public String getDireccion(){
         return direccion;
     }
 
     /** @param direccion Nueva dirección. */
-    public void setDireccion(String direccion) {
+    public void setDireccion(String direccion){
         this.direccion = direccion;
     }
 
@@ -150,20 +151,8 @@ public abstract class Usuario {
     }
 
     /** @param ciudad Nueva ciudad. */
-    public void setCiudad(String ciudad) {
+    public void setCiudad(String ciudad){
         this.ciudad = ciudad;
-    }
-
-    /**
-     * Inicia la sesión del usuario. Implementado por cada subclase.
-     */
-    public abstract void iniciarSesion();
-
-    /**
-     * Cierra la sesión del usuario en el sistema.
-     */
-    public void cerrarSesion() {
-        JOptionPane.showMessageDialog(null, "Sesión cerrada: " + nombre);
     }
 
     /**
@@ -171,18 +160,14 @@ public abstract class Usuario {
      *
      * @return String con los datos del usuario.
      */
-    public String mostrarInformacion() {
-        return "Tipo Persona: " + tipoPersona +
-                "\nDocumento: " + tipoDocumento + " " + numeroDocumento +
-                "\nNombre: " + nombre +
-                "\nCorreo: " + correo +
-                "\nTeléfono: " + telefono +
-                "\nDirección: " + direccion +
-                "\nCiudad: " + ciudad;
-    }
 
     @Override
     public String toString() {
-        return nombre + " (" + numeroDocumento + ")";
+        return "Documento: " + tipoDocumento + " " + numeroDocumento + "\n"+
+                "Nombre: " + nombre + "\n"+
+                "Correo: " + correo + "\n"+
+                "Teléfono: " + telefono + "\n"+
+                "Dirección: " + direccion + ", " + ciudad + "\n"+
+                "Tipo de persona: " + tipoPersona;
     }
 }

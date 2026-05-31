@@ -4,10 +4,9 @@ import java.time.LocalDate;
 import edu.uptc.enums.EstadoContrato;
 
 /**
- * Clase abstracta que representa un contrato público en el sistema.
- * Define los atributos comunes a todos los tipos de contrato y
- * declara el método abstracto {@link #validarContrato()} que debe
- * implementar cada subclase con sus propias reglas de negocio.
+ * Clase abstracta que representa un contrato público.
+ * Contiene únicamente los atributos comunes y sus accesores.
+ * Toda la lógica de validación y gestión está en {@code ServicioContrato}.
  *
  * @author Alejandra Cuellar, Laura Gonzalez, Elkin Pineda
  * @version 1.0
@@ -41,6 +40,7 @@ public abstract class Contrato {
 
     /**
      * Constructor completo de Contrato.
+     * El estado inicial siempre es PUBLICADO.
      *
      * @param numeroContrato Número único del contrato.
      * @param objetoContrato Objeto o finalidad del contrato.
@@ -54,12 +54,12 @@ public abstract class Contrato {
                     Contratista contratista, double valorContrato, LocalDate plazoEjecucion) {
         this.numeroContrato = numeroContrato;
         this.objetoContrato = objetoContrato;
-        this.fechaCreacion = fechaCreacion;
-        this.contratante = contratante;
-        this.contratista = contratista;
-        this.valorContrato = valorContrato;
+        this.fechaCreacion  = fechaCreacion;
+        this.contratante    = contratante;
+        this.contratista    = contratista;
+        this.valorContrato  = valorContrato;
         this.plazoEjecucion = plazoEjecucion;
-        this.estado = EstadoContrato.PUBLICADO;
+        this.estado         = EstadoContrato.PUBLICADO;
     }
 
     /** @return Número del contrato. */
@@ -142,32 +142,11 @@ public abstract class Contrato {
         this.estado = estado;
     }
 
-    /**
-     * Valida que el contrato cumpla las reglas de negocio de su tipo.
-     * Debe ser implementado por cada subclase.
-     *
-     * @return true si el contrato es válido, false en caso contrario.
-     */
-    public abstract boolean validarContrato();
-
-    /**
-     * Retorna la información del contrato formateada.
-     *
-     * @return String con los datos del contrato.
-     */
-    public String consultarInformacion() {
-        return "Número: " + numeroContrato +
-                "\nObjeto: " + objetoContrato +
-                "\nFecha Creación: " + fechaCreacion +
-                "\nContratante: " + (contratante != null ? contratante.getNombre() : "Sin asignar") +
-                "\nContratista: " + (contratista != null ? contratista.getNombre() : "Sin asignar") +
-                "\nValor: $" + String.format("%,.2f", valorContrato) +
-                "\nPlazo Ejecución: " + plazoEjecucion +
-                "\nEstado: " + estado;
-    }
-
     @Override
     public String toString() {
-        return "N° " + numeroContrato + " | " + objetoContrato + " | " + estado;
+        return "Número: " + numeroContrato +  "\n"+
+                "Objeto: " + objetoContrato + "\n"+
+                "Valor: $" + String.format("%,.2f", valorContrato) + "\n"+
+                "Estado: " + estado;
     }
 }

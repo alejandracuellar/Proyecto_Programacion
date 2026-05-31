@@ -1,13 +1,9 @@
 package edu.uptc.dominio;
 
-import javax.swing.*;
-import java.util.LinkedList;
-import java.util.List;
-
 /**
  * Clase que representa al usuario Contratante del sistema.
- * El contratante pertenece a una entidad pública y puede crear,
- * consultar, actualizar y eliminar contratos.
+ * Contiene únicamente los datos del contratante y sus accesores.
+ * La lógica de gestión de contratos está en {@code ServicioContrato}.
  * Hereda de {@link Usuario}.
  *
  * @author Alejandra Cuellar, Laura Gonzalez, Elkin Pineda
@@ -15,7 +11,7 @@ import java.util.List;
  */
 public class Contratante extends Usuario {
 
-    /** Sector al que pertenece la entidad. */
+    /** Sector al que pertenece la entidad contratante. */
     private String sector;
 
     /** Nivel jerárquico de la entidad (nacional, departamental, municipal). */
@@ -23,9 +19,6 @@ public class Contratante extends Usuario {
 
     /** Código único que identifica a la entidad contratante. */
     private String codigoEntidad;
-
-    /** Lista de contratos creados por este contratante. */
-    private LinkedList<Contrato> contratos;
 
     /**
      * Constructor completo del Contratante.
@@ -35,7 +28,7 @@ public class Contratante extends Usuario {
      * @param numeroDocumento Número de documento.
      * @param nombre          Nombre completo o razón social.
      * @param correo          Correo electrónico.
-     * @param contrasenia     Contraseña de acceso.
+     * @param contrasenia      Contraseña de acceso.
      * @param telefono        Teléfono de contacto.
      * @param direccion       Dirección de domicilio.
      * @param ciudad          Ciudad de domicilio.
@@ -43,14 +36,14 @@ public class Contratante extends Usuario {
      * @param nivelEntidad    Nivel de la entidad.
      * @param codigoEntidad   Código único de la entidad.
      */
-    public Contratante(String tipoPersona, String tipoDocumento, String numeroDocumento,  String nombre, String correo,
+    public Contratante(String tipoPersona, String tipoDocumento, String numeroDocumento, String nombre, String correo,
                        String contrasenia, String telefono, String direccion, String ciudad, String sector,
                        String nivelEntidad, String codigoEntidad) {
-        super(tipoPersona, tipoDocumento, numeroDocumento, nombre, correo, contrasenia, telefono, direccion, ciudad);
-        this.sector = sector;
-        this.nivelEntidad = nivelEntidad;
+        super(tipoPersona, tipoDocumento, numeroDocumento, nombre,
+                correo, contrasenia, telefono, direccion, ciudad);
+        this.sector        = sector;
+        this.nivelEntidad  = nivelEntidad;
         this.codigoEntidad = codigoEntidad;
-        this.contratos = new LinkedList<>();
     }
 
     /** @return Sector de la entidad. */
@@ -83,64 +76,11 @@ public class Contratante extends Usuario {
         this.codigoEntidad = codigoEntidad;
     }
 
-    /** @return Lista de contratos del contratante. */
-    public LinkedList<Contrato> getContratos() { return contratos; }
-
-    /**
-     * Agrega un contrato a la lista del contratante.
-     *
-     * @param contrato Contrato a agregar.
-     */
-    public void crearContacto(Contrato contrato){
-        for (int i=0; i < contratos.size(); i++){
-            if (contratos.get(i).getNumeroContrato().equals(contrato.getNumeroContrato())) {
-                contratos.set(i, contrato);
-                return;
-            }
-        }
-    }
-
-    /**
-     * Elimina un contrato de la lista por número de contrato.
-     *
-     * @param numeroContrato Número del contrato a eliminar.
-     */
-    public void eliminarContrato(String numeroContrato) {
-        for (int i =0; i < contratos.size(); i++) {
-            if (contratos.get(i).getNumeroContrato().equals(numeroContrato)) {
-                contratos.remove(i);
-                break;
-            }
-        }
-    }
-
-    /**
-     * Consulta un contrato por número.
-     *
-     * @param numeroContrato Número del contrato.
-     * @return Contrato encontrado o null.
-     */
-    public Contrato consultarContrato(String numeroContrato) {
-        for (Contrato aux : contratos) {
-            if (aux.getNumeroContrato().equals(numeroContrato)) {
-                return aux;
-            }
-        }
-        return null;
-    }
-
     @Override
-    public void iniciarSesion() {
-        JOptionPane.showMessageDialog(null, "Contratante: " + getNombre() +
-                "ha iniciado sesión.");
-    }
-
-    @Override
-    public String mostrarInformacion() {
-        return "_____Contratante_____\n" + super.mostrarInformacion() +
-                "\nSector: " + sector +
-                "\nNivel Entidad: " + nivelEntidad +
-                "\nCódigo Entidad: " + codigoEntidad;
-
+    public String toString() {
+        return "CONTRATANTE\n" + super.toString() + "\n"+
+                "Sector: " + sector + "\n"+
+                "Nivel Entidad: " + nivelEntidad + "\n"+
+                "Código Entidad: " + codigoEntidad;
     }
 }

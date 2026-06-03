@@ -66,7 +66,7 @@ public class Application {
                     JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opciones, opciones[0]);
 
             if (op != 0) {
-                JOptionPane.showMessageDialog(null, "¡Hasta luego!");
+                JOptionPane.showMessageDialog(null, "Sesión finalizada.");
                 break;
             }
 
@@ -156,7 +156,7 @@ public class Application {
             Contratante c = new Contratante(tipoPersona, tipoDoc, numDoc, nombre, correo, contrasena, telefono,
                     direccion, ciudad, sector, nivelEntidad, codigoEntidad);
             ctrlUsuario.registrarContratante(c);
-            exito("Contratante registrado exitosamente.");
+            exito("Contratante registrado.");
 
         } catch (UsuarioYaExisteException | IllegalArgumentException e) {
             error(e.getMessage());
@@ -187,7 +187,7 @@ public class Application {
             String sector = pedir("Nuevo sector (actual: " + c.getSector() + "):");
             if (sector != null && !sector.trim().isEmpty()) c.setSector(sector.trim());
             ctrlUsuario.actualizarContratante(c);
-            exito("Contratante actualizado exitosamente.");
+            exito("Contratante actualizado.");
         } catch (UsuarioNoEncontradoException e) {
             error(e.getMessage());
         }
@@ -199,7 +199,7 @@ public class Application {
         try {
             if (!confirmar("¿Eliminar contratante con documento " + doc + "?")) return;
             ctrlUsuario.eliminarContratante(doc.trim());
-            exito("Contratante eliminado exitosamente.");
+            exito("Contratante eliminado.");
         } catch (UsuarioNoEncontradoException e) {
             error(e.getMessage());
         }
@@ -257,7 +257,7 @@ public class Application {
             Contratista c = new Contratista(tipoPersona, tipoDoc, numDoc, nombre, correo,
                     contrasena, telefono, direccion, ciudad, esPublica, area);
             ctrlUsuario.registrarContratista(c);
-            exito("Contratista registrado exitosamente.");
+            exito("Contratista registrado.");
 
         } catch (UsuarioYaExisteException | IllegalArgumentException e) {
             error(e.getMessage());
@@ -287,7 +287,7 @@ public class Application {
             String area = pedir("Nueva área (actual: " + c.getAreaDesempenio() + "):");
             if (area != null && !area.trim().isEmpty()) c.setAreaDesempenio(area.trim());
             ctrlUsuario.actualizarContratista(c);
-            exito("Contratista actualizado exitosamente.");
+            exito("Contratista actualizado.");
         } catch (UsuarioNoEncontradoException e) {
             error(e.getMessage());
         }
@@ -299,7 +299,7 @@ public class Application {
         try {
             if (!confirmar("¿Eliminar contratista con documento " + doc + "?")) return;
             ctrlUsuario.eliminarContratista(doc.trim());
-            exito("Contratista eliminado exitosamente.");
+            exito("Contratista eliminado.");
         } catch (UsuarioNoEncontradoException e) {
             error(e.getMessage());
         }
@@ -466,7 +466,7 @@ public class Application {
             String nuevo = pedir("Nuevo objeto (actual: " + c.getObjetoContrato() + "):");
             if (nuevo != null && !nuevo.trim().isEmpty()) c.setObjetoContrato(nuevo.trim());
             ctrlContrato.actualizarContrato(c);
-            exito("Contrato actualizado exitosamente.");
+            exito("Contrato actualizado.");
         } catch (ContratoNoEncontradoException | ActualizacionNoPermitidaException |
                  ContratoInvalidoException e) {
             error(e.getMessage());
@@ -479,7 +479,7 @@ public class Application {
         try {
             if (!confirmar("¿Eliminar el contrato N° " + num + "?")) return;
             ctrlContrato.eliminarContrato(num.trim());
-            exito("Contrato eliminado exitosamente.");
+            exito("Contrato eliminado.");
         } catch (ContratoNoEncontradoException | EliminacionNoPermitidaException e) {
             error(e.getMessage());
         }
@@ -539,7 +539,7 @@ public class Application {
         if (num == null) return;
         try {
             ctrlContrato.seleccionarContrato(num.trim(), contratista);
-            exito("Contrato seleccionado exitosamente.");
+            exito("Contrato seleccionado.");
         } catch (ContratoNoEncontradoException | ContratoInvalidoException e) {
             error(e.getMessage());
         }
@@ -561,7 +561,7 @@ public class Application {
                     JOptionPane.QUESTION_MESSAGE, null, nombres, nombres[0]);
             if (sel == null) return;
 
-            String informe = pedir("Informe que justifica el cambio:");
+            String informe = pedir("Motivo del cambio de estado:");
             if (informe == null) return;
 
             ctrlContrato.cambiarEstadoContrato(num.trim(), EstadoContrato.valueOf(sel), informe.trim());
@@ -652,7 +652,8 @@ public class Application {
                     "Gobierno", "municipal", "ALC-DUI-001"
             ));
             svcUsuario.registrarContratista(new Contratista(
-                    "natural", "CC", "1098765432", "Carlos Ramírez",
+                    "natural", "CC", "1098765432", "Daniel Vargas" +
+                    "",
                     "contratista@gmail.com", "contratista123",
                     "3009876543", "Carrera 18 #25-10", "Duitama",
                     false, "Ingeniería de Sistemas"

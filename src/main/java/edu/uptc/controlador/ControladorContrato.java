@@ -108,9 +108,9 @@ public class ControladorContrato {
      * Cambia el estado de un contrato y genera el reporte de interventoría.
      *
      * @param numeroContrato Número del contrato.
-     * @param nuevoEstado    Estado al que se avanza.
-     * @param informe        Justificación del cambio.
-     * @throws ContratoNoEncontradoException     Si no existe el contrato.
+     * @param nuevoEstado Estado al que se avanza.
+     * @param informe Justificación del cambio.
+     * @throws ContratoNoEncontradoException Si no existe el contrato.
      * @throws TransicionEstadoInvalidaException Si la transición no es válida.
      */
     public void cambiarEstadoContrato(String numeroContrato, EstadoContrato nuevoEstado, String informe)
@@ -122,9 +122,9 @@ public class ControladorContrato {
      * Asigna un contratista a un contrato disponible.
      *
      * @param numeroContrato Número del contrato.
-     * @param contratista    Contratista a asignar.
+     * @param contratista Contratista a asignar.
      * @throws ContratoNoEncontradoException Si no existe el contrato.
-     * @throws ContratoInvalidoException     Si el contrato no está disponible.
+     * @throws ContratoInvalidoException Si el contrato no está disponible.
      */
     public void seleccionarContrato(String numeroContrato, Contratista contratista)
             throws ContratoNoEncontradoException, ContratoInvalidoException {

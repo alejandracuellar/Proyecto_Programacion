@@ -13,6 +13,6 @@ public class CredencialesInvalidasException extends Exception {
      * Constructor por defecto con mensaje estándar.
      */
     public CredencialesInvalidasException() {
-        super("Correo o contraseña incorrectos. Verifique sus credenciales.");
+        super("Correo o contraseña incorrectos. Intente nuevamente.");
     }
 }

@@ -26,9 +26,9 @@ public class ServicioUsuario {
         contratantes    = new ArrayList<>();
         contratistas    = new ArrayList<>();
         administradores = new ArrayList<>();
-        administradores.add(new Administrador("natural", "CC", "1000000000",
-                "Admin Sistema","admin@secop.gov.co", "admin123", "3000000000",
-                "Calle 1 #1-1", "Bogotá"
+        administradores.add(new Administrador("natural", "CC", "10102010210",
+                "Daniela Sistema","daniela@duitama.gov.co", "admin123", "3000000000",
+                "Calle 1 #1-1", "Duitama"
         ));
     }
 

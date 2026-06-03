@@ -6,7 +6,7 @@ package edu.uptc.dominio;
  * Aplica encapsulamiento mediante atributos protegidos y métodos de acceso.
  * La lógica de negocio está delegada a la capa de servicios.
  *
- * @author Alejandra Cuellar, Laura Gonzalez, Elkin Pineda
+ * @author Alejandra Cuellar, Laura Gonzalez
  * @version 1.0
  */
 public abstract class Usuario {

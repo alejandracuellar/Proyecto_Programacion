@@ -7,7 +7,7 @@ import java.time.LocalDate;
  * La regla de validación está implementada en {@code ServicioContrato}.
  * Hereda de {@link Contrato}.
  *
- * @author Alejandra Cuellar, Laura Gonzalez, Elkin Pineda
+ * @author Alejandra Cuellar, Laura Gonzalez
  * @version 1.0
  */
 public class ContratoObraPublica extends Contrato{

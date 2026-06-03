@@ -6,7 +6,7 @@ package edu.uptc.dominio;
  * La lógica de gestión de usuarios está en {@code ServicioUsuario}.
  * Hereda de {@link Usuario}.
  *
- * @author Alejandra Cuellar, Laura Gonzalez, Elkin Pineda
+ * @author Alejandra Cuellar, Laura Gonzalez
  * @version 1.0
  */
 public class Administrador extends Usuario {

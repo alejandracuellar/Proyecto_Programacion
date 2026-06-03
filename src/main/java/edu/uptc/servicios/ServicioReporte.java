@@ -11,7 +11,7 @@ import java.util.List;
  * Genera y almacena reportes automáticamente cada vez que cambia el estado de un contrato.
  * No realiza ninguna interacción con el usuario.
  *
- * @author Alejandra Cuellar, Laura Gonzalez, Elkin Pineda
+ * @author Alejandra Cuellar, Laura Gonzalez
  * @version 1.0
  */
 public class ServicioReporte {

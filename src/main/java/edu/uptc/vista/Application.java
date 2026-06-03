@@ -28,7 +28,7 @@ import java.util.List;
  *   <li><b>Excepciones:</b>  Paquete excepciones</li>
  * </ul>
  *
- * @author Alejandra Cuellar, Laura Gonzalez, Elkin Pineda
+ * @author Alejandra Cuellar, Laura Gonzalez
  * @version 1.0
  */
 public class Application {
@@ -66,7 +66,7 @@ public class Application {
                     JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opciones, opciones[0]);
 
             if (op != 0) {
-                JOptionPane.showMessageDialog(null, "Sesión finalizada.");
+                JOptionPane.showMessageDialog(null, "Cerrando el sistema...");
                 break;
             }
 

@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
  * Solo contiene los datos del reporte y sus accesores.
  * La lógica de generación está en {@code ServicioReporte}.
  *
- * @author Alejandra Cuellar, Laura González, Elkin Pineda
+ * @author Alejandra Cuellar, Laura González
  * @version 1.0
  */
 public class ReporteInterventoria {

@@ -6,7 +6,7 @@ package edu.uptc.dominio;
  * La lógica de gestión de contratos está en {@code ServicioContrato}.
  * Hereda de {@link Usuario}.
  *
- * @author Alejandra Cuellar, Laura Gonzalez, Elkin Pineda
+ * @author Alejandra Cuellar, Laura Gonzalez
  * @version 1.0
  */
 public class Contratante extends Usuario {

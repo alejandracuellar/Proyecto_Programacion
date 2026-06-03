@@ -8,7 +8,7 @@ import edu.uptc.enums.EstadoContrato;
  * Contiene únicamente los atributos comunes y sus accesores.
  * Toda la lógica de validación y gestión está en {@code ServicioContrato}.
  *
- * @author Alejandra Cuellar, Laura Gonzalez, Elkin Pineda
+ * @author Alejandra Cuellar, Laura Gonzalez
  * @version 1.0
  */
 public abstract class Contrato {

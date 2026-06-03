@@ -12,7 +12,7 @@ import java.util.List;
  * Recibe los datos ya capturados, llama al servicio y propaga las excepciones.
  * No contiene JOptionPane ni lógica de negocio.
  *
- * @author Alejandra Cuellar, Laura González, Elkin Pineda
+ * @author Alejandra Cuellar, Laura González
  * @version 1.0
  */
 public class ControladorContrato {

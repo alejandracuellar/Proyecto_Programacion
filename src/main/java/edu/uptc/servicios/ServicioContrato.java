@@ -14,7 +14,7 @@ import java.util.List;
  * y el almacenamiento en memoria. Lanza excepciones específicas ante cualquier error.
  * No realiza ninguna interacción con el usuario (sin JOptionPane).
  *
- * @author Alejandra Cuellar, Laura Gonzalez, Elkin Pineda
+ * @author Alejandra Cuellar, Laura Gonzalez
  * @version 1.0
  */
 public class ServicioContrato {

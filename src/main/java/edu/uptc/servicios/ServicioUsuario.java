@@ -10,7 +10,7 @@ import java.util.List;
  * Solo contiene validaciones, almacenamiento en memoria y lanzamiento de excepciones.
  * No realiza ninguna interacción con el usuario (sin JOptionPane).
  *
- * @author Alejandra Cuellar, Laura González, Elkin Pineda
+ * @author Alejandra Cuellar, Laura González
  * @version 1.0
  */
 public class ServicioUsuario {

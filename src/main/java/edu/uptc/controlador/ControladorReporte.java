@@ -9,7 +9,7 @@ import java.util.List;
  * Actúa como intermediario entre la vista (Application) y el ServicioReporte.
  * No contiene JOptionPane ni lógica de negocio.
  *
- * @author Alejandra Cuellar, Laura Gonzalez, Elkin Pineda
+ * @author Alejandra Cuellar, Laura Gonzalez
  * @version 1.0
  */
 public class ControladorReporte {

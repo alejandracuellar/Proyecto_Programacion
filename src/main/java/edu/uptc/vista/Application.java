@@ -141,7 +141,17 @@ public class Application {
     private static void crearContratante() {
         try {
             String tipoPersona = pedir("Tipo de persona (natural/jurídica):"); if (tipoPersona == null) return;
+            tipoPersona = tipoPersona.toUpperCase();
+            if (!tipoPersona.equals("natural") && !tipoPersona.equals("jurídica") ) {
+                error("Tipo de persona inválido");
+                return;
+            }
             String tipoDoc = pedir("Tipo de documento (CC/NIT/CE):"); if (tipoDoc == null) return;
+            tipoDoc = tipoDoc.toUpperCase();
+            if (!tipoDoc.equals("CC") && !tipoDoc.equals("NIT") && !tipoDoc.equals("CE")) {
+                error("Tipo documento inválido");
+                return;
+            }
             String numDoc = pedir("Número de documento:"); if (numDoc == null) return;
             String nombre = pedir("Nombre completo o razón social:"); if (nombre == null) return;
             String correo = pedir("Correo electrónico:"); if (correo == null) return;
@@ -247,6 +257,7 @@ public class Application {
             String numDoc = pedir("Número de documento:"); if (numDoc == null) return;
             String nombre = pedir("Nombre completo o razón social:"); if (nombre == null) return;
             String correo = pedir("Correo electrónico:"); if (correo == null) return;
+
             String contrasena = pedir("Contraseña:"); if (contrasena == null) return;
             String telefono = pedir("Teléfono:"); if (telefono == null) return;
             String direccion = pedir("Dirección:"); if (direccion == null) return;
@@ -663,7 +674,19 @@ public class Application {
     }
 
 
-    private static String pedir(String msg){ return JOptionPane.showInputDialog(null, msg); }
+
+    private static String pedir(String msg) {
+        String dato =JOptionPane.showInputDialog(null, msg);
+        if (dato == null) {
+            return null;
+        }
+        dato = dato.trim();
+        if (dato.isEmpty()) {
+            error("No puede estar vacío");
+            return null;
+        }
+        return dato;
+    }
     private static void info(String msg){ JOptionPane.showMessageDialog(null, msg, "Información", JOptionPane.INFORMATION_MESSAGE); }
     private static void exito(String msg) { JOptionPane.showMessageDialog(null, msg, "Éxito", JOptionPane.INFORMATION_MESSAGE); }
     private static void error(String msg) { JOptionPane.showMessageDialog(null, msg, "Error", JOptionPane.ERROR_MESSAGE); }
